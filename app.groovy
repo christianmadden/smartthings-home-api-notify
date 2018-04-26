@@ -25,7 +25,11 @@ definition(
 	iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
 	iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
 	iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png"
-) { appSetting "baseURL" }
+)
+{
+	appSetting "baseURL"
+	appSetting "HOME_API_KEY"
+}
 
 def installed()
 {
@@ -51,7 +55,7 @@ def onRoutineChange(evt)
 	routine = routine.replaceAll(/\s/, '-')
 	routine = routine.replaceAll(/[^a-zA-Z0-9-]/, '')
 	routine = routine.toLowerCase()
-	def path = "${appSettings.baseURL}/api/routine/${routine}"
+	def path = "${appSettings.baseURL}/api/${appSettings.HOME_API_KEY}/routine/${routine}"
 
 	try
 	{
